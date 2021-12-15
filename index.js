@@ -207,15 +207,16 @@ class CurrencyConverter {
     }
 
     async rates() {
-        if (this.currencyFrom === this.currencyTo)
+        if (this.currencyFrom === this.currencyTo) {
             return new Promise((resolve, _) => { resolve(1) })
-        else
+        } else {
             const html = await axios(`https://www.google.com/search?q=${this.currencyFrom}+to+${this.currencyTo}`)
-        const $ = cheerio.load(html.data)
-        const rates = $(".iBp4i").text().split(" ")[0]
-        if (rates.includes(","))
-            rates = rates.replace(",", ".")
-        return parseFloat(rates)
+            const $ = cheerio.load(html.data)
+            const rates = $(".iBp4i").text().split(" ")[0]
+            if (rates.includes(","))
+                rates = rates.replace(",", ".")
+            return parseFloat(rates)
+        }
     }
 
     async convert(currencyAmount) {
