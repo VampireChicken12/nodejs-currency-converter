@@ -249,4 +249,4 @@ class CurrencyConverter {
     }
 }
 
-export default CurrencyConverter
+module.exports = CurrencyConverter
